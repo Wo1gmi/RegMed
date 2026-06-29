@@ -1,0 +1,260 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0F172A;
+  color: #F1F5F9;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1E293B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+.tooltip-container {
+  position: relative;
+}
+
+.tooltip-container:hover .tooltip-box {
+  display: block;
+}
+
+.tooltip-box {
+  display: none;
+  position: absolute;
+  z-index: 9999;
+  background: #1E293B;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 12px;
+  width: 280px;
+  font-size: 12px;
+  color: #F1F5F9;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  top: -8px;
+  left: 100%;
+  margin-left: 8px;
+}
+
+.highlight-yellow {
+  background-color: rgba(234, 179, 8, 0.25);
+  border-bottom: 2px solid #EAB308;
+  cursor: pointer;
+  padding: 1px 2px;
+  border-radius: 2px;
+}
+
+.highlight-red {
+  background-color: rgba(239, 68, 68, 0.25);
+  border-bottom: 2px solid #EF4444;
+  cursor: pointer;
+  padding: 1px 2px;
+  border-radius: 2px;
+}
+
+.drag-zone {
+  border: 2px dashed #334155;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.drag-zone:hover, .drag-zone.active {
+  border-color: #9966FF;
+  background-color: rgba(6, 182, 212, 0.05);
+}
+
+.progress-bar {
+  height: 6px;
+  background-color: #1E293B;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #9966FF, #7B44EE);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.kanban-col {
+  min-height: 400px;
+}
+
+.onboarding-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.onboarding-tooltip {
+  position: fixed;
+  background: #1E293B;
+  border: 2px solid #9966FF;
+  border-radius: 12px;
+  padding: 20px;
+  width: 320px;
+  z-index: 10001;
+  pointer-events: all;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 4px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+  min-height: 52px;
+}
+
+.calendar-day:hover {
+  background: #1E293B;
+}
+
+.calendar-day.today {
+  background: #2D1B69;
+  border: 1px solid #9966FF;
+}
+
+.calendar-day.has-event {
+  position: relative;
+}
+
+.event-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin: 1px;
+}
+
+.stage-line {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stage-line::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #334155;
+  z-index: 0;
+}
+
+.stage-node {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.stage-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  border: 2px solid;
+}
+
+.tab-active {
+  color: #9966FF;
+  border-bottom: 2px solid #9966FF;
+}
+
+.tab-inactive {
+  color: #94A3B8;
+  border-bottom: 2px solid transparent;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-box {
+  background: #1E293B;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  padding: 32px;
+  width: 480px;
+  max-width: 90vw;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.7);
+  z-index: 9999;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes progress-anim {
+  from { width: 0%; }
+  to { width: var(--target-width); }
+}
